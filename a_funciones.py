@@ -91,9 +91,10 @@ def preparar_datos (df):
 
     ####Ejecutar funciones de transformaciones
     
-    df=imputar_f(df,list_cat)
+    #df=imputar_f(df,list_cat)
     df_dummies=pd.get_dummies(df,columns=list_dummies)
-    df_dummies= df_dummies.loc[:,~df_dummies.columns.isin(['perf_2023','EmpID2'])]
+    df_dummies= df_dummies.loc[:,~df_dummies.columns.isin(['EmployeeID'])]
+    #df_dummies=df_dummies.drop(['BusinessTravel', 'Department', 'EducationField', 'JobRole','MaritalStatus'])
     X2=scaler.transform(df_dummies)
     X=pd.DataFrame(X2,columns=df_dummies.columns)
     X=X[var_names]
